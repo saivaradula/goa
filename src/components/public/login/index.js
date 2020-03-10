@@ -4,24 +4,29 @@ import "./login.css";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = {
+      username: "",
+      password: "",
+      submitted: false
+    };
 
-    this.handleUsername = this.handleUsername.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUsername(event) {
-    this.setState({ username: event.target.value });
-  }
-
-  handlePassword(event) {
-    this.setState({ password: event.target.value });
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     // get the login service from here.
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+    if (username && password) {
+      this.props.login(username, password);
+    }
   }
 
   loginForm() {
@@ -37,7 +42,7 @@ class Login extends Component {
                     name="username"
                     placeholder="Email Address"
                     type="email"
-                    onChange={this.handleUsername}
+                    onChange={this.handleChange}
                   />
                 </div>
 
@@ -49,7 +54,7 @@ class Login extends Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handlePassword}
+                      onChange={this.handleChange}
                     />
                   </div>
                 </div>
