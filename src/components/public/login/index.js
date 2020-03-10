@@ -76,35 +76,47 @@ class Login extends Component {
     );
   }
 
+  loginLeft() {
+    return (
+      <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 hidden-xs hidden-sm">
+        <div className="col-lg-12 col-sm-12 col-md-12">
+          <span>
+            <p className="tagline">
+              Good Bye Pen &amp; Paper
+              <br /> Hello GoAudits
+            </p>
+            <img
+              className="mobilelogo"
+              src="https://portal.goaudits.com/GoAudits/assets/img/Preview_GoA.png"
+            />
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  loginRight() {
+    return (
+      <div className="col-sm-12 col-md-4 col-lg-4 leftside">
+        <div className="activationLabel">
+          <a href="https://goaudits.com/">
+            <img
+              className="main-logo"
+              src="https://portal.goaudits.com/GoAudits/assets/img/App_LogoTitle.svg"
+            />
+          </a>
+        </div>
+        {this.loginForm()}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row scroll-hidden">
-          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 hidden-xs hidden-sm">
-            <div className="col-lg-12 col-sm-12 col-md-12">
-              <span>
-                <p className="tagline">
-                  Good Bye Pen &amp; Paper
-                  <br /> Hello GoAudits
-                </p>
-                <img
-                  className="mobilelogo"
-                  src="https://portal.goaudits.com/GoAudits/assets/img/Preview_GoA.png"
-                />
-              </span>
-            </div>
-          </div>
-          <div className="col-sm-12 col-md-4 col-lg-4 leftside">
-            <div className="activationLabel">
-              <a href="https://goaudits.com/">
-                <img
-                  className="main-logo"
-                  src="https://portal.goaudits.com/GoAudits/assets/img/App_LogoTitle.svg"
-                />
-              </a>
-            </div>
-            {this.loginForm()}
-          </div>
+          {this.loginLeft()}
+          {this.loginRight()}
         </div>
       </div>
     );
