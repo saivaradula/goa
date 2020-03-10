@@ -4,7 +4,24 @@ import "./login.css";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { username: "", password: "" };
+
+    this.handleUsername = this.handleUsername.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleUsername(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  handlePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    // get the login service from here.
   }
 
   loginForm() {
@@ -13,13 +30,14 @@ class Login extends Component {
         <div className="panel-body">
           <div className="row">
             <div className="col-lg-12">
-              <form id="login-form" noValidate="" style={{ display: "block" }}>
+              <form id="login-form" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input
                     className="custom-input"
                     name="username"
                     placeholder="Email Address"
                     type="email"
+                    onChange={this.handleUsername}
                   />
                 </div>
 
@@ -31,6 +49,7 @@ class Login extends Component {
                       name="password"
                       placeholder="Password"
                       type="password"
+                      onChange={this.handlePassword}
                     />
                   </div>
                 </div>
