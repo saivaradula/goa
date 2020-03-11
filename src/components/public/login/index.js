@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import "./login.css";
+import { connect } from 'react-redux';
+import { userActions } from '../../../actions';
 
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.props.logout();
+
     this.state = {
       username: "",
       password: "",
@@ -23,7 +28,7 @@ class Login extends Component {
     event.preventDefault();
     // get the login service from here.
     this.setState({ submitted: true });
-    const { username, password } = this.state;
+    const { username, password } = this.state; 
     if (username && password) {
       this.props.login(username, password);
     }
@@ -147,4 +152,16 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapState(state) {
+  const { loggingIn } = state.authentication;
+  return { loggingIn };
+}
+
+const actionCreators = {
+ // login: userActions.login,
+  logout: userActions.logout
+};
+
+const LoginPage = connect(mapState, actionCreators)(Login);
+
+export { LoginPage as Login }; 
